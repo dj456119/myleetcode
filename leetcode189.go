@@ -1,3 +1,12 @@
+/*
+ * @Descripttion:leetcode189，右移数组k个元素
+ * @version:
+ * @Author: cm.d
+ * @Date: 2021-10-09 16:33:51
+ * @LastEditors: cm.d
+ * @LastEditTime: 2021-10-12 17:50:18
+ */
+
 package myleetcode
 
 func rotate(nums []int, k int) {
