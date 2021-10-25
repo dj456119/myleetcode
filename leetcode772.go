@@ -4,7 +4,7 @@
  * @Author: cm.d
  * @Date: 2021-10-25 00:50:10
  * @LastEditors: cm.d
- * @LastEditTime: 2021-10-25 00:50:10
+ * @LastEditTime: 2021-10-26 00:21:30
  */
 package myleetcode
 
@@ -13,7 +13,7 @@ import (
 	"fmt"
 )
 
-func calculate(s string) int {
+func calculate772(s string) int {
 	opermap := make(map[byte]int)
 	opermap['+'] = 10
 	opermap['-'] = 10
@@ -94,7 +94,7 @@ func calculate(s string) int {
 
 }
 
-func calculateRePorland(rePorlandList *list.List) int {
+func calculateRePorland772(rePorlandList *list.List) int {
 	calStack := list.New()
 	for rePorlandList.Len() != 0 {
 		temp := rePorlandList.Front()
@@ -128,6 +128,6 @@ func calculateRePorland(rePorlandList *list.List) int {
 	return calStack.Front().Value.(int)
 }
 
-func Calculate(s string) int {
-	return calculate(s)
+func Calculate772(s string) int {
+	return calculate772(s)
 }
