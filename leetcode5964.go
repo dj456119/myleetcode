@@ -4,9 +4,9 @@
  * @Author: cm.d
  * @Date: 2021-12-26 11:07:30
  * @LastEditors: cm.d
- * @LastEditTime: 2021-12-26 11:20:31
+ * @LastEditTime: 2021-12-31 10:37:13
  */
-package main
+package myleetcode
 
 func executeInstructions(n int, startPos []int, s string) []int {
 	result := []int{}

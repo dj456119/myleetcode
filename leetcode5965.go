@@ -4,9 +4,9 @@
  * @Author: cm.d
  * @Date: 2021-12-26 10:56:29
  * @LastEditors: cm.d
- * @LastEditTime: 2021-12-26 11:04:42
+ * @LastEditTime: 2021-12-31 10:37:24
  */
-package main
+package myleetcode
 
 import "math"
 

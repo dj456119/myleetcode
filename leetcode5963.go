@@ -4,9 +4,9 @@
  * @Author: cm.d
  * @Date: 2021-12-26 10:50:03
  * @LastEditors: cm.d
- * @LastEditTime: 2021-12-26 10:57:04
+ * @LastEditTime: 2021-12-31 10:36:51
  */
-package main
+package myleetcode
 
 import (
 	"fmt"
