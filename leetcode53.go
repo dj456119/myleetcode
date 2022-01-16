@@ -4,22 +4,24 @@
  * @Author: cm.d
  * @Date: 2021-12-31 11:36:22
  * @LastEditors: cm.d
- * @LastEditTime: 2021-12-31 11:37:50
+ * @LastEditTime: 2022-01-15 23:16:54
  */
 package myleetcode
 
 func maxSubArray(nums []int) int {
-	max := 0
-	sum := 0
-	for _, j := range nums {
-		if sum > sum+j {
-			max = sum
-		} else {
-			max = sum + j
+	max := nums[0]
+	lxsum := nums[0]
+
+	for i, j := range nums {
+		if i == 0 {
+			continue
 		}
-		sum = sum + j
-		if sum < 0 {
-			sum = 0
+		lxsum = lxsum + j
+		if lxsum < j {
+			lxsum = j
+		}
+		if lxsum > max {
+			max = lxsum
 		}
 	}
 	return max
