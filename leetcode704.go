@@ -1,3 +1,11 @@
+/*
+ * @Descripttion:
+ * @version:
+ * @Author: cm.d
+ * @Date: 2021-10-23 09:43:47
+ * @LastEditors: cm.d
+ * @LastEditTime: 2022-01-24 02:32:07
+ */
 /**
 二分查找
 */
@@ -7,35 +15,28 @@ func search(nums []int, target int) int {
 	if len(nums) == 0 {
 		return -1
 	}
-	if len(nums) == 1 {
-		if nums[0] == target {
-			return 0
-		} else {
+	left := 0
+	right := len(nums) - 1
+	for {
+		if left+1 == right || left == right {
+			if nums[left] == target {
+				return left
+			}
+			if nums[right] == target {
+				return right
+			}
 			return -1
 		}
-	}
-	start := 0
-	end := len(nums) - 1
-	for {
-		middle := (end + start) / 2
-		if nums[middle] > target {
-			end = middle
-		} else if nums[middle] < target {
-			start = middle
+		mid := (left + right) / 2
+		if nums[mid] == target {
+			return mid
+		} else if nums[mid] > target {
+			right = mid
 		} else {
-			return middle
+			left = mid
 		}
-		if end == start || end == start+1 {
-			if nums[start] == target {
-				return start
-			} else if nums[end] == target {
-				return end
-			} else {
-				return -1
-			}
-		}
-	}
 
+	}
 }
 func Search(nums []int, target int) int {
 	return search(nums, target)
