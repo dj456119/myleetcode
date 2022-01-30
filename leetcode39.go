@@ -4,61 +4,36 @@
  * @Author: cm.d
  * @Date: 2022-01-16 20:00:30
  * @LastEditors: cm.d
- * @LastEditTime: 2022-01-16 20:41:48
+ * @LastEditTime: 2022-01-30 00:24:51
  */
 package myleetcode
 
-import "fmt"
-
 func combinationSum(candidates []int, target int) [][]int {
-	return digui(candidates, 0, target, []int{})
+	return dfs39(candidates, 0, 0, target, []int{})
 }
 
-func digui(candidates []int, now int, target int, result []int) [][]int {
-	fmt.Println(result)
+func dfs39(candidates []int, now int, sum int, target int, result []int) [][]int {
 	if now == len(candidates) {
-		if target == 0 {
-			return [][]int{result}
-		}
-		return [][]int{}
+		return nil
 	}
 
-	if now == len(candidates)-1 {
-		if candidates[now] > target {
-			return [][]int{}
-		}
-	}
-
-	fin := [][]int{}
-	z := digui(candidates, now+1, target, result)
-	if len(z) != 0 {
-		fin = append(fin, z...)
-	}
-	r := make([]int, len(result))
-	copy(r, result)
-	for {
-		if target-candidates[now] >= 0 {
-			r = append(r, candidates[now])
-			r1 := make([]int, len(r))
-			copy(r1, r)
-			fmt.Println("shenmi:", r, target, now)
-			z := digui(candidates, now+1, target-candidates[now], r1)
-			if len(z) != 0 {
-				fin = append(fin, z...)
-			}
-			target = target - candidates[now]
-		} else {
+	rr := [][]int{}
+	r1 := []int{}
+	for sum <= target {
+		r2 := make([]int, len(result))
+		copy(r2, result)
+		r2 = append(r2, r1...)
+		if sum == target {
+			rr = append(rr, r2)
 			break
 		}
-	}
-	if target > 0 {
-		r := make([]int, len(result))
-		z := digui(candidates, now+1, target, r)
-		if len(z) != 0 {
-			fin = append(fin, z...)
+		rrr := dfs39(candidates, now+1, sum, target, r2)
+		if rrr != nil {
+			rr = append(rr, rrr...)
 		}
-		//fmt.Println(fin)
-		//break
+		sum = sum + candidates[now]
+		r1 = append(r1, candidates[now])
 	}
-	return fin
+
+	return rr
 }
