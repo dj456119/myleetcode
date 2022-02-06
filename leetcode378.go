@@ -4,12 +4,11 @@
  * @Author: cm.d
  * @Date: 2022-01-14 21:55:57
  * @LastEditors: cm.d
- * @LastEditTime: 2022-01-14 23:40:31
+ * @LastEditTime: 2022-02-06 21:54:51
  */
 package myleetcode
 
 func kthSmallest(matrix [][]int, k int) int {
-	result := -1
 	start := matrix[0][0]
 	end := matrix[len(matrix)-1][len(matrix)-1]
 	for {

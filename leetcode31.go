@@ -4,30 +4,48 @@
  * @Author: cm.d
  * @Date: 2022-01-08 17:12:46
  * @LastEditors: cm.d
- * @LastEditTime: 2022-01-08 17:16:57
+ * @LastEditTime: 2022-02-06 00:44:36
  */
 package myleetcode
 
-import "sort"
-
 func nextPermutation(nums []int) {
-	if len(nums) < 2 {
+	if len(nums) == 0 || len(nums) == 1 {
 		return
 	}
-	i := len(nums) - 2
-	j := len(nums) - 1
+	a := len(nums) - 1
+	b := len(nums) - 2
+	min := 99999
+	minIndex := -1
 	for {
-		if nums[i]*10+nums[j] < nums[j]*10+nums[i] {
-			nums[i], nums[j] = nums[j], nums[i]
+		if b < 0 {
+			i := 0
+			j := len(nums) - 1
+			for i < j {
+				nums[i], nums[j] = nums[j], nums[i]
+				i++
+				j--
+			}
 			return
+		} else {
+			if nums[b] < nums[a] {
+				for i := len(nums) - 1; i >= b+1; i-- {
+					if nums[i] > nums[b] && nums[i] < min {
+						min = nums[i]
+						minIndex = i
+					}
+				}
+				nums[b], nums[minIndex] = nums[minIndex], nums[b]
+				i := b + 1
+				j := len(nums) - 1
+				for i < j {
+					nums[i], nums[j] = nums[j], nums[i]
+					i++
+					j--
+				}
+				return
+			}
 		}
-		i--
-		j--
-		if i < 0 || j < 0 {
-			break
-		}
+		a--
+		b--
 	}
-	sort.Slice(nums, func(x, y int) bool {
-		return nums[x] < nums[y]
-	})
 }

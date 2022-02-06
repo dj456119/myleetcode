@@ -4,7 +4,7 @@
  * @Author: cm.d
  * @Date: 2022-01-30 10:30:55
  * @LastEditors: cm.d
- * @LastEditTime: 2022-01-30 10:33:30
+ * @LastEditTime: 2022-02-06 21:54:45
  */
 package myleetcode
 
@@ -14,12 +14,10 @@ func findFinalValue(nums []int, original int) int {
 		temp[j] = i
 	}
 	_, ok := temp[original]
-	prev := original
 	for ok {
-		prev = original
 		original = original * 2
 
 		_, ok = temp[original]
 	}
-	return prev
+	return original
 }
