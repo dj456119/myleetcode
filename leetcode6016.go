@@ -4,7 +4,7 @@
  * @Author: cm.d
  * @Date: 2022-03-06 11:46:40
  * @LastEditors: cm.d
- * @LastEditTime: 2022-03-06 11:50:42
+ * @LastEditTime: 2022-03-12 13:49:24
  */
 package myleetcode
 
@@ -16,8 +16,8 @@ func cellsInRange(s string) []string {
 	startCC := s[3]
 	s2 := int(s[4] - '0')
 	result := []string{}
-	for i := startC; startC <= startCC; i++ {
-		for j := s1; s1 <= s2; j++ {
+	for i := startC; i <= startCC; i++ {
+		for j := s1; j <= s2; j++ {
 			result = append(result, fmt.Sprintf("%c%d", i, j))
 		}
 	}
