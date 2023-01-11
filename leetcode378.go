@@ -8,50 +8,53 @@
  */
 package myleetcode
 
-func kthSmallest(matrix [][]int, k int) int {
-	start := matrix[0][0]
-	end := matrix[len(matrix)-1][len(matrix)-1]
-	for {
-		z := get(matrix, (start+end)/2)
-		if z == k-1 {
-			return z
-		} else if z > k-1 {
-			end = z
-		} else {
-			start = z + 1
-		}
-		if start >= end {
-			break
-		}
-	}
-	return -1
-}
+import (
+	"container/heap"
+	"sort"
+)
 
-func get(matrix [][]int, k int) int {
-	i := 0
-	j := 0
-	count := 0
-	for {
-		if matrix[i][j] > k {
-			i--
-			break
-		}
-		i++
-	}
-	count = count + i + 1
-	for {
-		j++
-		if j >= len(matrix[i]) || i < 0 {
-			break
-		}
-		for {
-			if matrix[i][j] > k {
-				i--
-			} else {
-				break
+func kthSmallest(matrix [][]int, k int) int {
+	z := make([]int, 0)
+	h := new(HP378)
+	h.H = z
+	heap.Init(h)
+	for i := range matrix {
+		for j := range matrix {
+			if len(h.H) < k {
+				heap.Push(h, matrix[i][j])
+				continue
+			}
+			if matrix[i][j] < h.H[0] {
+				heap.Pop(h)
+				heap.Push(h, matrix[i][j])
 			}
 		}
-		count = count + i + 1
 	}
-	return count
+	return heap.Pop(h).(int)
+}
+
+type HP378 struct {
+	H sort.IntSlice
+}
+
+func (hp HP378) Less(i, j int) bool {
+	return hp.H[i] > hp.H[j]
+}
+
+func (hp HP378) Len() int {
+	return len(hp.H)
+}
+
+func (hp HP378) Swap(i, j int) {
+	hp.H[i], hp.H[j] = hp.H[j], hp.H[i]
+}
+
+func (hp *HP378) Push(x interface{}) {
+	hp.H = append(hp.H, x.(int))
+}
+
+func (hp *HP378) Pop() interface{} {
+	z := hp.H[len(hp.H)-1]
+	hp.H = hp.H[:len(hp.H)-1]
+	return z
 }
